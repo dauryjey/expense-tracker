@@ -1,11 +1,11 @@
 import supertest from "supertest"
-import { app } from "./app"
+import server from "../server"
 
-const request = supertest(app)
+const request = supertest(server)
 
 // Add new expense
 test("POST /expenses/v1/add", async () => {
-	const response = await request.post("/expenses/v1/add").send({
+	const response = await request.post("/api/v1/expenses/add").send({
 		"amount": 100,
 		"description": "Lunch",
 	})

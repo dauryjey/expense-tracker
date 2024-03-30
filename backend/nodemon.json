@@ -2,5 +2,5 @@
   "watch": [ "src" ],
   "ignore": ["*.test.js", "**/fixtures/**"],
   "ext": "ts",
-  "exec": "ts-node ./src/app.ts"
+  "exec": "ts-node ./src/index.ts"
 }
