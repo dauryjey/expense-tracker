@@ -45,21 +45,20 @@ test ("POST /expenses/v1/add", async () => {
 	expect(response.status).toBe(400)
 })
 
-// Fix test
-
 // Delete Expense
-/* test("DELETE /expenses/v1/delete/:id", async () => {
+test("DELETE /expenses/v1/delete/:id", async () => {
 	const createResponse = await request.post("/api/v1/expenses/add").send({
+		"id": "1",
 		"amount": 600,
 		"description": "Videogames",
 	})
 
-	const createdExpenseId = createResponse.body.id
+	const	createdExpenseId = createResponse.body.id
 
 	const deleteResponse = await request.delete(`/api/v1/expenses/delete/${createdExpenseId}`)
 
 	expect(deleteResponse.status).toBe(204)
-}) */
+}) 
 
 // Delete expense that does not exist
 test ("DELETE /expenses/v1/delete/:id", async () => {

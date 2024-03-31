@@ -1,5 +1,5 @@
-import { v4 as uuidv4 } from "uuid"
 import { IExpense } from "../models/expense"
+import { new_ } from "../models/expense"
 import orm from "./MockOrm"
 
 async function getAll(): Promise<IExpense[]> {
@@ -9,8 +9,8 @@ async function getAll(): Promise<IExpense[]> {
 
 async function add(expense: IExpense): Promise<void> {
 	const db = await orm.openDb()
-	expense.id = uuidv4()
-	db.expenses.push(expense)
+	const newExpense = new_(expense.id, expense.description, expense.amount)
+	db.expenses.push(newExpense)
 	return await orm.saveDb(db)
 }
 
