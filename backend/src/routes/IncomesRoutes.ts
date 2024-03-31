@@ -3,6 +3,7 @@ import { IIncome } from "../models/income"
 import ExpensesService from "../services/ExpensesService"
 import { IRes } from "./types/express/misc"
 import { IReq } from "./types/types"
+import IncomesService from "../services/IncomesService"
 
 async function retrieveAll(req: IReq, res: IRes) {
 	try {
@@ -21,14 +22,14 @@ async function add(req: IReq<IIncome>, res: IRes) {
 		return res.status(400).send({ errors: errors.array() })
 	}
 
-	await ExpensesService.addOne({ id, amount, description })
+	await IncomesService.addOne({ id, amount, description })
 	return res.status(201).send({ id, amount, description }).end()
 }
 
 async function deleteOne(req: IReq<string>, res: IRes) {
 	try {
 		const { id } = req.params
-		await ExpensesService.deleteOne(id)
+		await IncomesService.deleteOne(id)
 		
 		return res.status(204).end()
 	} catch (error: unknown) {

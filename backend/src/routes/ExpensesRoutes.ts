@@ -36,8 +36,6 @@ async function deleteOne(req: IReq<string>, res: IRes) {
 	}
 }
 
-
-
 export default {
 	retrieveAll,
 	deleteOne,

@@ -12,4 +12,12 @@ export default {
 		RetrieveAll: "/all",
 		Delete: "/delete/:id",
 	},
+	Balance: {
+		Base: "/balance",
+		getBalance: "/getBalance",
+	},
+	Report: {
+		Base: "/report",
+		getReport: "/getReport",
+	},
 } as const
