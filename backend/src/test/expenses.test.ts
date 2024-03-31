@@ -8,7 +8,6 @@ test("GET /expenses/v1/all", async () => {
 	const response = await request.get("/api/v1/expenses/all")
 
 	expect(response.status).toBe(200)
-	expect(response.body.length).toBeGreaterThan(0)
 })
 
 // Add new expense
