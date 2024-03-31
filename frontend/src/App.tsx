@@ -1,4 +1,4 @@
-import { Button, Card, Label, TextInput } from "flowbite-react";
+import { Card } from "flowbite-react";
 import { FinancialCategory } from "./components/FinancialCategory";
 import { Balance } from "./components/Balance";
 import { Subtitle } from "./components/Subtitle";
@@ -6,19 +6,47 @@ import { SectionContainer } from "./components/SectionContainer";
 import { Title } from "./components/Title";
 import { useEffect, useState } from "react";
 import { fetchReport } from "./services/fetchReport";
+import { deleteExpense } from "./services/deleteExpense";
+import { deleteIncome } from "./services/deleteIncome";
+import { TransactionItem } from "./components/TransactionItem";
+import { TransactionForm } from "./components/TransactionForm";
+import { addTransaction } from "./services/addTransaction";
 
 function App() {
-  const [report, setReport] = useState<Report>();
+  const [report, setReport] = useState<Report>()
+  const [addedNew, setAddedNew] = useState(false)
+  const [isDeleted, setIsDeleted] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchReport();
+      const data = await fetchReport()
 
       setReport(data);
+      setAddedNew(false)
+      setIsDeleted(false)
     };
 
     fetchData();
-  }, []);
+  }, [addedNew, isDeleted]);
+
+  
+  const handleAddTransaction = async (description: string, amount: number) => {
+    addTransaction(description, amount)
+    setAddedNew(true)
+   }
+
+
+  const handleDeleteExpense = async (event: React.MouseEvent, id: string) => {
+    event.preventDefault()
+    deleteExpense(id)
+    setIsDeleted(true)
+  };
+
+  const handleDeleteIncome = async (event: React.MouseEvent, id: string) => {
+    event.preventDefault()
+    deleteIncome(id)
+    setIsDeleted(true)
+  };
 
   return (
     <main className="flex justify-center">
@@ -48,70 +76,28 @@ function App() {
           <SectionContainer>
             <Subtitle text="History" />
             <ul className="mt-4">
-              {report.expenses.expenses.map((expense) => {
-                return (
-                  <li
-                    key={expense.id}
-                    className="flex justify-between items-center p-4 border-b border-gray-200"
-                  >
-                    <span>{expense.description}</span>
-                    <div className="flex items-center">
-                      <span className="text-red-500 mr-4">
-                        -${expense.amount}
-                      </span>
-                      <button onClick={() => handleDeleteExpense(expense.id)}>
-                        Delete
-                      </button>
-                    </div>
-                  </li>
-                );
-              })}
+              {report.expenses.expenses.map((expense) => (
+                <TransactionItem
+                  key={expense.id}
+                  transaction={expense}
+                  handleDelete={(e) => handleDeleteExpense(e, expense.id)}
+                  color="text-red-500"
+                />
+              ))}
 
-              {report.incomes.incomes.map((income) => {
-                return (
-                  <li
-                    key={income.id}
-                    className="flex justify-between items-center p-4 border-b border-gray-200"
-                  >
-                    <span>{income.description}</span>
-                    <div className="flex items-center">
-                      <span className="text-green-500 mr-4">
-                        +${income.amount}
-                      </span>
-                      <button onClick={() => handleDeleteIncome(income.id)}>
-                        Delete
-                      </button>
-                    </div>
-                  </li>
-                );
-              })}
+              {report.incomes.incomes.map((income) => (
+                <TransactionItem
+                  key={income.id}
+                  transaction={income}
+                  handleDelete={(e) => handleDeleteIncome(e, income.id)}
+                  color="text-green-500"
+                />
+              ))}
             </ul>
           </SectionContainer>
           <SectionContainer>
             <Subtitle text="Add new transaction" />
-            <form className="mt-4">
-              <label className="block">
-                <Label htmlFor="description" value="Description" />
-                <TextInput
-                  type="text"
-                  className="w-full mt-1 p-2 border border-gray-200 rounded-md"
-                  placeholder="Enter text..."
-                  id="description"
-                />
-              </label>
-              <label className="block mt-4">
-                <Label htmlFor="amount" value="Amount" />
-                <TextInput
-                  type="number"
-                  className="w-full mt-1 p-2 border border-gray-200 rounded-md"
-                  placeholder="Enter amount..."
-                  id="amount"
-                />
-              </label>
-              <Button className="w-full mt-4" color="purple">
-                Add transaction
-              </Button>
-            </form>
+            <TransactionForm onSubmit={(description, amount) => handleAddTransaction(description, amount)} />
           </SectionContainer>
         </section>
       )}
