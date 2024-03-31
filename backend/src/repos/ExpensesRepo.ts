@@ -14,7 +14,21 @@ async function add(expense: IExpense): Promise<void> {
 	return await orm.saveDb(db)
 }
 
+async function deleteExpense(id: string): Promise<void> {
+	const db = await orm.openDb()
+	const expense = db.expenses.find((e) => e.id === id)
+
+	if (!expense) {
+		throw new Error("Expense not found")
+	}
+
+	db.expenses = db.expenses.filter((e) => e.id !== id)
+	
+	return await orm.saveDb(db)
+}
+
 export default {
 	getAll,
-	add
+	add,
+	deleteExpense
 } as const

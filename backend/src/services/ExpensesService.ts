@@ -17,8 +17,13 @@ function addOne (expense: IExpense): Promise<void> {
 	return ExpensesRepo.add(expense)
 }
 
+function deleteOne (id: string): Promise<void> {
+	return ExpensesRepo.deleteExpense(id)
+}
+
 export default {
 	addOne,
 	retrieveAll,
+	deleteOne,
 	validators
 } as const

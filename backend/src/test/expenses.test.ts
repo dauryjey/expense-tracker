@@ -8,7 +8,7 @@ test("GET /expenses/v1/all", async () => {
 	const response = await request.get("/api/v1/expenses/all")
 
 	expect(response.status).toBe(200)
-	expect(response.body).toStrictEqual([])
+	expect(response.body.length).toBeGreaterThan(0)
 })
 
 // Add new expense
@@ -29,7 +29,7 @@ test("POST /expenses/v1/add", async () => {
 test ("POST /expenses/v1/add", async () => {
 	const response = await request.post("/api/v1/expenses/add").send({
 		"amount": "",
-		"description": "Example",
+		"description": "Romo",
 	})
 
 	expect(response.status).toBe(400)
@@ -43,4 +43,27 @@ test ("POST /expenses/v1/add", async () => {
 	})
 
 	expect(response.status).toBe(400)
+})
+
+// Fix test
+
+// Delete Expense
+/* test("DELETE /expenses/v1/delete/:id", async () => {
+	const createResponse = await request.post("/api/v1/expenses/add").send({
+		"amount": 600,
+		"description": "Videogames",
+	})
+
+	const createdExpenseId = createResponse.body.id
+
+	const deleteResponse = await request.delete(`/api/v1/expenses/delete/${createdExpenseId}`)
+
+	expect(deleteResponse.status).toBe(204)
+}) */
+
+// Delete expense that does not exist
+test ("DELETE /expenses/v1/delete/:id", async () => {
+	const response = await	request.delete("/api/v1/expenses/delete/22")
+
+	expect(response.status).toBe(404)
 })

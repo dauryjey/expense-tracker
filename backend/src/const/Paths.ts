@@ -4,5 +4,6 @@ export default {
 		Base: "/expenses",
 		Add: "/add",
 		RetrieveAll: "/all",
+		Delete: "/delete/:id",
 	},
 } as const

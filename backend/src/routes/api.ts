@@ -15,6 +15,11 @@ expenseRouter.post(
 	ExpensesRoutes.add
 )
 
+expenseRouter.delete(
+	Paths.Expenses.Delete,
+	ExpensesRoutes.deleteOne
+)
+
 apiRouter.use(Paths.Expenses.Base, expenseRouter)
 
 export default apiRouter
