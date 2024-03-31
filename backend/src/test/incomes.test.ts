@@ -48,3 +48,10 @@ test	("DELETE /income/v1/delete/:id", async () => {
 
 	expect(response.status).toBe(404)
 })
+
+// Get total income
+test("GET /income/v1/getTotal", async () => {
+	const response = await request.get("/api/v1/income/getTotal")
+
+	expect(response.status).toBe(200)
+})

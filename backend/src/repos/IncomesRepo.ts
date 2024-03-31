@@ -27,8 +27,14 @@ async function deleteExpense(id: string): Promise<void> {
 	return await orm.saveDb(db)
 }
 
+async function getTotal(): Promise<number> {
+	const db = await orm.openDb()
+	return db.incomes.reduce((acc, e) => acc + e.amount, 0)
+}
+
 export default {
 	getAll,
 	add,
+	getTotal,
 	deleteExpense
 } as const

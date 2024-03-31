@@ -6,8 +6,14 @@ import IncomesRepo from "./IncomesRepo"
 async function get_ (): Promise<IReport>  {
 	return {
 		balance: await BalanceRepo.getBalance(),
-		expenses: await ExpensesRepo.getAll(),
-		incomes: await IncomesRepo.getAll()
+		expenses: {
+			total: await ExpensesRepo.getTotal(),
+			expenses: await ExpensesRepo.getAll()
+		},
+		incomes: {
+			total: await IncomesRepo.getTotal(),
+			incomes: await IncomesRepo.getAll()
+		}
 	}
 }
 

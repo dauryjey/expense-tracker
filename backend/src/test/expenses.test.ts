@@ -65,3 +65,10 @@ test ("DELETE /expenses/v1/delete/:id", async () => {
 
 	expect(response.status).toBe(404)
 })
+
+// Get total expenses
+test("GET /expenses/v1/getTotal", async () => {
+	const response = await request.get("/api/v1/expenses/getTotal")
+
+	expect(response.status).toBe(200)
+})

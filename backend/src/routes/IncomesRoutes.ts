@@ -37,8 +37,18 @@ async function deleteOne(req: IReq<string>, res: IRes) {
 	}
 }
 
+async function retrieveTotal(req: IReq, res: IRes) {
+	try {
+		const total = await IncomesService.getTotal()
+		return res.status(200).send({ total })
+	} catch (error: unknown) {
+		return res.status(500).send({ error: "Internal server error" })
+	}
+}
+
 export default {
 	retrieveAll,
+	retrieveTotal,
 	deleteOne,
 	add,
 } as const

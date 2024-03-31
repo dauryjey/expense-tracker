@@ -21,9 +21,15 @@ function deleteOne (id: string): Promise<void> {
 	return IncomesRepo.deleteExpense(id)
 }
 
+function getTotal (): Promise<number> {
+	return IncomesRepo.getTotal()
+}
+
+
 export default {
 	addOne,
 	retrieveAll,
+	getTotal,
 	deleteOne,
 	validators
 } as const

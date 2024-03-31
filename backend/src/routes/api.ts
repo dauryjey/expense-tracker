@@ -18,6 +18,7 @@ const reportRouter = Router()
 
 // Define the routes for expenses
 expenseRouter.get(Paths.Expenses.RetrieveAll, ExpensesRoutes.retrieveAll)
+expenseRouter.get(Paths.Expenses.GetTotal, ExpensesRoutes.retrieveTotal)
 
 expenseRouter.post(
 	Paths.Expenses.Add,
@@ -32,6 +33,8 @@ expenseRouter.delete(
 
 // Define the routes for incomes
 incomeRouter.get(Paths.Incomes.RetrieveAll, IncomesRoutes.retrieveAll)
+incomeRouter.get(Paths.Incomes.GetTotal, IncomesRoutes.retrieveTotal)
+
 
 incomeRouter.post(
 	Paths.Incomes.Add,

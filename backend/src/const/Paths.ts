@@ -5,12 +5,14 @@ export default {
 		Add: "/add",
 		RetrieveAll: "/all",
 		Delete: "/delete/:id",
+		GetTotal: "/getTotal",
 	},
 	Incomes: {
 		Base: "/income",
 		Add: "/add",
 		RetrieveAll: "/all",
 		Delete: "/delete/:id",
+		GetTotal: "/getTotal",
 	},
 	Balance: {
 		Base: "/balance",

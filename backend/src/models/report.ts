@@ -2,7 +2,13 @@ import { IBalance } from "./balance"
 import { IExpense } from "./expense"
 
 export interface IReport {
-	expenses: IExpense[],
-	incomes: IExpense[],
-	balance: IBalance | number
+  expenses: {
+    total: number;
+    expenses: IExpense[];
+  };
+  incomes: {
+    total: number;
+    incomes: IExpense[];
+  };
+  balance: IBalance | number;
 }
