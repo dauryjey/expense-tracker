@@ -3,5 +3,6 @@ export default {
 	Expenses: {
 		Base: "/expenses",
 		Add: "/add",
+		RetrieveAll: "/all",
 	},
 } as const

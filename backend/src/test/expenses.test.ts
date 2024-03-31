@@ -3,6 +3,14 @@ import server from "../server"
 
 const request = supertest(server)
 
+// Retrieve all expenses
+test("GET /expenses/v1/all", async () => {
+	const response = await request.get("/api/v1/expenses/all")
+
+	expect(response.status).toBe(200)
+	expect(response.body).toStrictEqual([])
+})
+
 // Add new expense
 test("POST /expenses/v1/add", async () => {
 	const response = await request.post("/api/v1/expenses/add").send({

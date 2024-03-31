@@ -4,6 +4,11 @@ import ExpensesService from "../services/ExpensesService"
 import { IRes } from "./types/express/misc"
 import { IReq } from "./types/types"
 
+async function retrieveAll(req: IReq, res: IRes) {
+	const expenses = await ExpensesService.retrieveAll()
+	return res.status(200).send(expenses)
+}
+
 async function add(req: IReq<IExpense>, res: IRes) {
 	const { amount, description } = req.body
 
@@ -17,5 +22,6 @@ async function add(req: IReq<IExpense>, res: IRes) {
 }
 
 export default {
+	retrieveAll,
 	add,
 } as const

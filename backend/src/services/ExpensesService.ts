@@ -9,11 +9,16 @@ const validators = [
 		.withMessage("Amount must be a number and greater than 0"),
 ]
 
+function retrieveAll (): Promise<IExpense[]> {
+	return ExpensesRepo.getAll()
+}
+
 function addOne (expense: IExpense): Promise<void> {
 	return ExpensesRepo.add(expense)
 }
 
 export default {
 	addOne,
-	validators,
+	retrieveAll,
+	validators
 } as const

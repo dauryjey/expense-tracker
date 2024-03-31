@@ -7,6 +7,8 @@ const apiRouter = Router()
 
 const expenseRouter = Router()
 
+expenseRouter.get(Paths.Expenses.RetrieveAll, ExpensesRoutes.retrieveAll)
+
 expenseRouter.post(
 	Paths.Expenses.Add,
 	ExpensesService.validators,
