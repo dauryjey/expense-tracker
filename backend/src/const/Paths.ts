@@ -6,4 +6,10 @@ export default {
 		RetrieveAll: "/all",
 		Delete: "/delete/:id",
 	},
+	Incomes: {
+		Base: "/income",
+		Add: "/add",
+		RetrieveAll: "/all",
+		Delete: "/delete/:id",
+	},
 } as const

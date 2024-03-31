@@ -6,7 +6,8 @@ import { IExpense } from "../models/expense"
 const DB_FILE_NAME = "db.json"
 
 interface IDb {
-  expenses: IExpense[]
+  expenses: IExpense[],
+		incomes: IExpense[]
 }
 
 function openDb(): Promise<IDb> {
