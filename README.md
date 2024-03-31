@@ -16,3 +16,12 @@ This is a basic expense tracker application built with TypeScript, React, Expres
 - Jest: JavaScript testing framework for writing unit and integration tests.
 - Supertest: Super-agent driven library for testing HTTP servers.
 - MongoDB (Future Implementation): NoSQL database for storing expense data.
+
+## Improvements Left
+
+- Refactor code for better modularity and maintainability.
+- Implement MongoDB for data persistence.
+- Enhance frontend UI/UX.
+- Add authentication and authorization features.
+- Implement more comprehensive testing.
+- Implement environment variables on the frontend to manage configurations dynamically, such as API endpoints or feature toggles, without hardcoding them.
